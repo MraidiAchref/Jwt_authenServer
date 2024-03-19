@@ -22,13 +22,7 @@ app.get("/posts", authenticateToken, (req, res) => {
   res.json(posts.filter(post => post.userName === req.user.name));
 });
 
-app.post("/login", (req, res) => {
-  const userName = req.body.userName;
-  const user = { name: userName };
-
-  const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-  res.json({ accessToken: accessToken });
-});
+ 
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
